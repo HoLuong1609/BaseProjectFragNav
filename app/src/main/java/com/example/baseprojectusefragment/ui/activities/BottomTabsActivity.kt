@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import com.example.baseprojectusefragment.R
 import com.example.baseprojectusefragment.ui.fragments.*
 import com.example.baseprojectusefragment.common.*
@@ -16,7 +17,8 @@ import com.ncapdevi.fragnav.FragNavTransactionOptions
 import com.ncapdevi.fragnav.tabhistory.UniqueTabHistoryStrategy
 import kotlinx.android.synthetic.main.activity_bottom_tabs.*
 
-class BottomTabsActivity : AppCompatActivity(), FragNavController.TransactionListener, FragNavController.RootFragmentListener {
+class BottomTabsActivity : AppCompatActivity(), FragNavController.TransactionListener,
+    FragNavController.RootFragmentListener, BaseFragment.FragmentNavigation {
     override val numberOfRootFragments: Int = 5
 
     private val fragNavController: FragNavController = FragNavController(supportFragmentManager,
@@ -117,6 +119,16 @@ class BottomTabsActivity : AppCompatActivity(), FragNavController.TransactionLis
         // If we have a backstack, show the back button
         supportActionBar?.setDisplayHomeAsUpEnabled(fragNavController.isRootFragment.not())
 
+    }
+
+    override fun pushFragment(fragment: Fragment, sharedElementList: List<Pair<View, String>>?) {
+        val options = FragNavTransactionOptions.newBuilder()
+        sharedElementList?.let {
+            it.forEach { pair ->
+                options.addSharedElement(pair)
+            }
+        }
+        fragNavController.pushFragment(fragment, options.build())
     }
 
     override fun getRootFragment(index: Int): Fragment {
