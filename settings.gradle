@@ -1,0 +1,4 @@
+include ':frag-nav'
+include ':app'
+project(':frag-nav').projectDir = new File(rootDir, 'FragNav/frag-nav/')
+rootProject.name = "Base Project Use Fragment"
