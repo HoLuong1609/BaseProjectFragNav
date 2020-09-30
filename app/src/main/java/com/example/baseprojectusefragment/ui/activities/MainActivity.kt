@@ -2,36 +2,42 @@ package com.example.baseprojectusefragment.ui.activities
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.example.baseprojectusefragment.R
 import com.example.baseprojectusefragment.ui.fragments.*
 import com.example.baseprojectusefragment.common.*
+import com.example.baseprojectusefragment.databinding.ActivityMainBinding
 import com.example.baseprojectusefragment.extensions.hideSoftKeyboard
+import com.example.baseprojectusefragment.extensions.initViewModel
+import com.example.baseprojectusefragment.ui.base.BaseActivity
+import com.example.baseprojectusefragment.ui.base.FragmentNavigation
+import com.example.baseprojectusefragment.ui.viewmodel.MainViewModel
 import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavLogger
 import com.ncapdevi.fragnav.FragNavSwitchController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
 import com.ncapdevi.fragnav.tabhistory.UniqueTabHistoryStrategy
-import kotlinx.android.synthetic.main.activity_bottom_tabs.*
+import kotlinx.android.synthetic.main.activity_main.*
 
-class BottomTabsActivity : AppCompatActivity(), FragNavController.TransactionListener,
-    FragNavController.RootFragmentListener, BaseFragment.FragmentNavigation {
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(), FragNavController.TransactionListener,
+    FragNavController.RootFragmentListener, FragmentNavigation {
+
     override val numberOfRootFragments: Int = 5
 
     private val fragNavController: FragNavController = FragNavController(supportFragmentManager,
         R.id.container
     )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bottom_tabs)
+    override fun onCreateViewModel() = initViewModel<MainViewModel>()
 
+    override fun layoutId() = R.layout.activity_main
+
+    override fun initView(savedInstanceState: Bundle?) {
         fragNavController.apply {
-            transactionListener = this@BottomTabsActivity
-            rootFragmentListener = this@BottomTabsActivity
+            transactionListener = this@MainActivity
+            rootFragmentListener = this@MainActivity
             createEager = true
             fragNavLogger = object : FragNavLogger {
                 override fun error(message: String, throwable: Throwable) {
@@ -74,18 +80,23 @@ class BottomTabsActivity : AppCompatActivity(), FragNavController.TransactionLis
             when (it.itemId) {
                 R.id.navigation_home -> {
                     switchTab(INDEX_RECENTS)
+                    setTitle(R.string.recents)
                 }
                 R.id.navigation_favorites -> {
                     switchTab(INDEX_FAVORITES)
+                    setTitle(R.string.favorites)
                 }
                 R.id.navigation_nearby -> {
                     switchTab(INDEX_NEARBY)
+                    setTitle(R.string.nearby)
                 }
                 R.id.navigation_friends -> {
                     switchTab(INDEX_FRIENDS)
+                    setTitle(R.string.friends)
                 }
                 R.id.navigation_food -> {
                     switchTab(INDEX_FOOD)
+                    setTitle(R.string.food)
                 }
             }
             true
@@ -133,11 +144,11 @@ class BottomTabsActivity : AppCompatActivity(), FragNavController.TransactionLis
 
     override fun getRootFragment(index: Int): Fragment {
         when (index) {
-            INDEX_RECENTS -> return RecentsFragment.newInstance(0)
-            INDEX_FAVORITES -> return FavoritesFragment.newInstance(0)
-            INDEX_NEARBY -> return NearbyFragment.newInstance(0)
-            INDEX_FRIENDS -> return FriendsFragment.newInstance(0)
-            INDEX_FOOD -> return FoodFragment.newInstance(0)
+            INDEX_RECENTS -> return HomeFragment.newInstance()
+            INDEX_FAVORITES -> return HomeFragment.newInstance()
+            INDEX_NEARBY -> return HomeFragment.newInstance()
+            INDEX_FRIENDS -> return HomeFragment.newInstance()
+            INDEX_FOOD -> return HomeFragment.newInstance()
         }
         throw IllegalStateException("Need to send an index that we know")
     }
@@ -155,7 +166,7 @@ class BottomTabsActivity : AppCompatActivity(), FragNavController.TransactionLis
     }
 
     companion object {
-        private val TAG = BottomTabsActivity::class.java.simpleName
+        private val TAG = MainActivity::class.java.simpleName
     }
 }
 
