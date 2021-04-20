@@ -8,6 +8,7 @@ import com.example.baseprojectusefragment.databinding.ActivityMainBinding
 import com.example.baseprojectusefragment.extensions.initViewModel
 import com.example.baseprojectusefragment.ui.base.FragNavActivity
 import com.example.baseprojectusefragment.ui.base.FragmentNavigation
+import com.example.baseprojectusefragment.ui.fragments.ContactsFragment
 import com.example.baseprojectusefragment.ui.fragments.HomeFragment
 import com.example.baseprojectusefragment.ui.viewmodel.MainViewModel
 import com.ncapdevi.fragnav.FragNavController
@@ -24,7 +25,7 @@ class MainActivity : FragNavActivity<MainViewModel, ActivityMainBinding>(), Frag
     override fun layoutId() = R.layout.activity_main
 
     override val defaultTabIndex: Int
-        get() = INDEX_RECENTS
+        get() = INDEX_FRIENDS
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
@@ -76,7 +77,7 @@ class MainActivity : FragNavActivity<MainViewModel, ActivityMainBinding>(), Frag
             INDEX_RECENTS -> return HomeFragment.newInstance()
             INDEX_FAVORITES -> return HomeFragment.newInstance()
             INDEX_NEARBY -> return HomeFragment.newInstance()
-            INDEX_FRIENDS -> return HomeFragment.newInstance()
+            INDEX_FRIENDS -> return ContactsFragment.newInstance()
             INDEX_FOOD -> return HomeFragment.newInstance()
         }
         throw IllegalStateException("Need to send an index that we know")

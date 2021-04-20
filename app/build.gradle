@@ -13,6 +13,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -34,8 +35,12 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "com.roughike:bottom-bar:2.3.1"
     implementation 'com.ncapdevi:frag-nav:3.2.0'
-    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "android.arch.lifecycle:extensions:$lifecycle_extensions_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxanjava_version"
+    implementation 'com.android.support:multidex:1.0.3'
+
+    implementation 'com.googlecode.ez-vcard:ez-vcard:0.11.2'
+    api 'com.intuit.sdp:sdp-android:1.0.6'
 }

@@ -4,6 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.example.baseprojectusefragment.BaseApplication
+
+val appContext = BaseApplication.instance
 
 fun Activity.hideSoftKeyboard() {
     val inputMethodManager: InputMethodManager = getSystemService(

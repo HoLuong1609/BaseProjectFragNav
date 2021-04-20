@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.baseprojectusefragment.ui.viewmodel.ContactsViewModel
 import com.example.baseprojectusefragment.ui.viewmodel.HomeViewModel
 import com.example.baseprojectusefragment.ui.viewmodel.MainViewModel
 
@@ -24,6 +25,9 @@ class ViewModelFactory(context: Context) : ViewModelProvider.NewInstanceFactory(
                 }
                 isAssignableFrom(HomeViewModel::class.java) -> {
                     HomeViewModel(application)
+                }
+                isAssignableFrom(ContactsViewModel::class.java) -> {
+                    ContactsViewModel(application)
                 }
                 else -> throw IllegalStateException("unknown view model: $modelClass")
             }
