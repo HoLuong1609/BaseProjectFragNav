@@ -13,7 +13,7 @@ import com.example.baseprojectusefragment.ui.base.BaseBindingViewHolder
 import com.example.baseprojectusefragment.ui.model.Contact
 import java.util.*
 
-class ContactAdapter(var parentLifecycleOwner: LifecycleOwner) :
+class ContactAdapter(val parentLifecycleOwner: LifecycleOwner) :
     BaseBindingAdapter<Contact, ContactAdapter.ContactHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactHolder =

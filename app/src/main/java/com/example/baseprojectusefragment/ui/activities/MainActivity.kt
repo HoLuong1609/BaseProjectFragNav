@@ -29,32 +29,28 @@ class MainActivity : FragNavActivity<MainViewModel, ActivityMainBinding>(), Frag
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
-        val initial = savedInstanceState == null
-        if (initial) {
-            navBottom.selectedItemId = R.id.navigation_home
-        }
 
         navBottom.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
                     switchTab(INDEX_RECENTS)
-                    setTitle(R.string.recents)
+                    setTitle(getTitleRes(INDEX_RECENTS))
                 }
                 R.id.navigation_favorites -> {
                     switchTab(INDEX_FAVORITES)
-                    setTitle(R.string.favorites)
+                    setTitle(getTitleRes(INDEX_FAVORITES))
                 }
                 R.id.navigation_nearby -> {
                     switchTab(INDEX_NEARBY)
-                    setTitle(R.string.nearby)
+                    setTitle(getTitleRes(INDEX_NEARBY))
                 }
                 R.id.navigation_friends -> {
                     switchTab(INDEX_FRIENDS)
-                    setTitle(R.string.friends)
+                    setTitle(getTitleRes(INDEX_FRIENDS))
                 }
                 R.id.navigation_food -> {
                     switchTab(INDEX_FOOD)
-                    setTitle(R.string.food)
+                    setTitle(getTitleRes(INDEX_FOOD))
                 }
             }
             true
@@ -70,6 +66,15 @@ class MainActivity : FragNavActivity<MainViewModel, ActivityMainBinding>(), Frag
             4 -> R.id.navigation_food
             else -> R.id.navigation_home
         }
+    }
+
+    override fun getTitleRes(tabIndex: Int) = when (tabIndex) {
+        INDEX_RECENTS -> R.string.recents
+        INDEX_FAVORITES -> R.string.favorites
+        INDEX_NEARBY -> R.string.nearby
+        INDEX_FRIENDS -> R.string.friends
+        INDEX_FOOD -> R.string.food
+        else -> 0
     }
 
     override fun getRootFragment(index: Int): Fragment {

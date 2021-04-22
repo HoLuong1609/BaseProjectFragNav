@@ -10,9 +10,6 @@ import com.example.baseprojectusefragment.R
 import com.example.baseprojectusefragment.ui.fragments.*
 import com.example.baseprojectusefragment.common.*
 import com.example.baseprojectusefragment.extensions.hideSoftKeyboard
-import com.example.baseprojectusefragment.ui.base.BaseActivity
-import com.example.baseprojectusefragment.ui.base.BaseViewModel
-import com.example.baseprojectusefragment.ui.base.FragmentNavigation
 import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavLogger
 import com.ncapdevi.fragnav.FragNavSwitchController
@@ -52,9 +49,13 @@ abstract class FragNavActivity<VM : BaseViewModel, VB : ViewDataBinding> : BaseA
         }
 
         fragNavController.initialize(defaultTabIndex, savedInstanceState)
+        switchTab(defaultTabIndex, null)
+        setTitle(getTitleRes(defaultTabIndex))
     }
 
     abstract val defaultTabIndex: Int
+
+    abstract fun getTitleRes(tabIndex: Int): Int
 
     override fun onBackPressed() {
         if (fragNavController.isRootFragment.not()) {
