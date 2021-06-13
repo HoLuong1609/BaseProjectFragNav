@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Base Project Use Fragment</string>
-    <string name="recents">Recents</string>
+    <string name="home">Home</string>
+    <string name="markets">Markets</string>
+    <string name="trades">Trades</string>
+    <string name="futures">Futures</string>
+    <string name="wallets">Wallets</string>
     <string name="favorites">Favorites</string>
-    <string name="nearby">Nearby</string>
-    <string name="friends">Friends</string>
-    <string name="food">Food</string>
 </resources>

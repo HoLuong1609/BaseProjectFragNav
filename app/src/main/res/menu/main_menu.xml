@@ -4,28 +4,28 @@
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_recents"
         android:iconTint="@color/colorPrimaryDark"
-        android:title="@string/recents" />
+        android:title="@string/home" />
 
     <item
         android:id="@+id/navigation_favorites"
         android:icon="@drawable/ic_favorites"
         android:iconTint="@color/colorPrimaryDark"
-        android:title="@string/favorites" />
+        android:title="@string/markets" />
 
     <item
         android:id="@+id/navigation_nearby"
         android:icon="@drawable/ic_nearby"
         android:iconTint="@color/colorPrimaryDark"
-        android:title="@string/nearby" />
+        android:title="@string/trades" />
     <item
         android:id="@+id/navigation_friends"
         android:icon="@drawable/ic_friends"
         android:iconTint="@color/colorPrimaryDark"
-        android:title="@string/friends" />
+        android:title="@string/futures" />
 
     <item
         android:id="@+id/navigation_food"
         android:icon="@drawable/ic_restaurants"
         android:iconTint="@color/colorPrimaryDark"
-        android:title="@string/food" />
+        android:title="@string/wallets" />
 </menu>

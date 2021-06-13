@@ -3,7 +3,7 @@
 
     <data>
         <variable
-            name="viewModel"
+            name="viewmodel"
             type="com.example.baseprojectusefragment.ui.viewmodel.HomeViewModel" />
     </data>
 

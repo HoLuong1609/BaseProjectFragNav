@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="markets_tab_titles">
+        <item>@string/markets</item>
+        <item>@string/favorites</item>
+    </string-array>
+</resources>

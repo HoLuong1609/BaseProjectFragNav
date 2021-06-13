@@ -9,6 +9,7 @@ import com.example.baseprojectusefragment.extensions.initViewModel
 import com.example.baseprojectusefragment.ui.base.FragNavActivity
 import com.example.baseprojectusefragment.ui.base.FragmentNavigation
 import com.example.baseprojectusefragment.ui.fragments.HomeFragment
+import com.example.baseprojectusefragment.ui.fragments.MarketsFragment
 import com.example.baseprojectusefragment.ui.viewmodel.MainViewModel
 import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
@@ -24,7 +25,7 @@ class MainActivity : FragNavActivity<MainViewModel, ActivityMainBinding>(), Frag
     override fun layoutId() = R.layout.activity_main
 
     override val defaultTabIndex: Int
-        get() = INDEX_RECENTS
+        get() = INDEX_MARKETS
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
@@ -36,24 +37,24 @@ class MainActivity : FragNavActivity<MainViewModel, ActivityMainBinding>(), Frag
         navBottom.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
-                    switchTab(INDEX_RECENTS)
-                    setTitle(R.string.recents)
+                    switchTab(INDEX_HOME)
+                    setTitle(R.string.home)
                 }
                 R.id.navigation_favorites -> {
-                    switchTab(INDEX_FAVORITES)
-                    setTitle(R.string.favorites)
+                    switchTab(INDEX_MARKETS)
+                    setTitle(R.string.markets)
                 }
                 R.id.navigation_nearby -> {
-                    switchTab(INDEX_NEARBY)
-                    setTitle(R.string.nearby)
+                    switchTab(INDEX_TRADES)
+                    setTitle(R.string.trades)
                 }
                 R.id.navigation_friends -> {
-                    switchTab(INDEX_FRIENDS)
-                    setTitle(R.string.friends)
+                    switchTab(INDEX_FUTURES)
+                    setTitle(R.string.futures)
                 }
                 R.id.navigation_food -> {
-                    switchTab(INDEX_FOOD)
-                    setTitle(R.string.food)
+                    switchTab(INDEX_WALLETS)
+                    setTitle(R.string.wallets)
                 }
             }
             true
@@ -73,11 +74,11 @@ class MainActivity : FragNavActivity<MainViewModel, ActivityMainBinding>(), Frag
 
     override fun getRootFragment(index: Int): Fragment {
         when (index) {
-            INDEX_RECENTS -> return HomeFragment.newInstance()
-            INDEX_FAVORITES -> return HomeFragment.newInstance()
-            INDEX_NEARBY -> return HomeFragment.newInstance()
-            INDEX_FRIENDS -> return HomeFragment.newInstance()
-            INDEX_FOOD -> return HomeFragment.newInstance()
+            INDEX_HOME -> return HomeFragment.newInstance()
+            INDEX_MARKETS -> return MarketsFragment.newInstance()
+            INDEX_TRADES -> return HomeFragment.newInstance()
+            INDEX_FUTURES -> return HomeFragment.newInstance()
+            INDEX_WALLETS -> return HomeFragment.newInstance()
         }
         throw IllegalStateException("Need to send an index that we know")
     }
