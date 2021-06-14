@@ -7,7 +7,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import com.example.baseprojectusefragment.BR
 import com.example.baseprojectusefragment.R
-import com.example.baseprojectusefragment.data.response.Crypto
+import com.example.baseprojectusefragment.ui.model.Crypto
 import com.example.baseprojectusefragment.databinding.ItemCryptoBinding
 import com.example.baseprojectusefragment.ui.base.BaseBindingAdapter
 import com.example.baseprojectusefragment.ui.base.BaseBindingViewHolder

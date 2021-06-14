@@ -43,6 +43,10 @@ class CrytosFragment : BaseFragment<CryptoViewModel, FragmentCryptosBinding>(),
         viewModel.getCryptos()
     }
 
+    fun search(keyword: String) {
+        viewModel.filter(keyword)
+    }
+
     companion object {
 
         private const val ARGS_IS_FAVORITE = "args_is_favorite"

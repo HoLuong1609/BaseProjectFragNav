@@ -10,12 +10,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 abstract class BaseFragment<VM : BaseViewModel, VB : ViewDataBinding> : Fragment() {
-    private val subscriptions = CompositeDisposable()
 
     private lateinit var internalViewModel: VM
     private lateinit var viewBinding: VB
@@ -32,12 +28,6 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewDataBinding> : Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         internalViewModel = onCreateViewModel()
-        subscriptions.add(
-            viewModel.getErrorMessage()
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::showErrorDialog)
-        )
     }
 
     override fun onAttach(context: Context) {
@@ -64,11 +54,6 @@ abstract class BaseFragment<VM : BaseViewModel, VB : ViewDataBinding> : Fragment
                 android.R.transition.fade
             )
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        subscriptions.clear()
     }
 
     abstract fun onCreateViewModel(): VM

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_markets"
+        android:icon="@drawable/ic_favorites"
+        android:iconTint="@color/colorPrimaryDark"
+        android:title="@string/markets" />
+
+    <item
+        android:id="@+id/navigation_trades"
+        android:icon="@drawable/ic_nearby"
+        android:iconTint="@color/colorPrimaryDark"
+        android:title="@string/trades" />
+    <item
+        android:id="@+id/navigation_futures"
+        android:icon="@drawable/ic_friends"
+        android:iconTint="@color/colorPrimaryDark"
+        android:title="@string/futures" />
+
+    <item
+        android:id="@+id/navigation_wallets"
+        android:icon="@drawable/ic_restaurants"
+        android:iconTint="@color/colorPrimaryDark"
+        android:title="@string/wallets" />
+</menu>

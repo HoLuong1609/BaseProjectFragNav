@@ -12,14 +12,24 @@ import kotlinx.android.synthetic.main.fragment_markets.*
 
 class MarketsFragment : BaseFragment<MarketsViewModel, FragmentMarketsBinding>() {
 
+    private var mPagerAdapter: TabPagerAdapter? = null
+
     override fun layoutId() = R.layout.fragment_markets
 
     override fun onCreateViewModel() = initViewModel<MarketsViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewPager.adapter = TabPagerAdapter(requireActivity().supportFragmentManager, resources.getStringArray(R.array.markets_tab_titles).toList())
+        mPagerAdapter = TabPagerAdapter(requireActivity().supportFragmentManager, resources.getStringArray(R.array.markets_tab_titles).toList())
+        viewPager.adapter = mPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
+    }
+
+    fun search(keyword: String) {
+        val fragment = mPagerAdapter?.getFragment(viewPager.currentItem)
+        if (fragment is CrytosFragment && fragment.isAdded) {
+            fragment.search(keyword)
+        }
     }
 
     companion object {

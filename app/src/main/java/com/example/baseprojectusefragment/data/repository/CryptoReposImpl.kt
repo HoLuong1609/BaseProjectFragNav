@@ -2,13 +2,11 @@ package com.example.baseprojectusefragment.data.repository
 
 import com.example.baseprojectusefragment.data.api.CryptoService
 import com.example.baseprojectusefragment.data.request.CryptoRequest
-import com.example.baseprojectusefragment.data.response.CryptoResponse
-import io.reactivex.Observable
 
 class CryptoReposImpl private constructor(private val service: CryptoService) :
     CryptoRepos {
 
-    override fun getCryptos(request: CryptoRequest): Observable<CryptoResponse> =
+    override suspend fun getCryptos(request: CryptoRequest) =
         service.getCryptos(request.counterCurrency)
 
     companion object {

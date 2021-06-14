@@ -4,11 +4,8 @@ import com.example.baseprojectusefragment.BuildConfig
 import com.google.gson.GsonBuilder
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
-import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -30,7 +27,6 @@ class RetrofitClient private constructor(baseUrl: String = BASE_URL) {
             .client(client.build())
             .baseUrl(baseUrl)
             .addConverterFactory(gsonConverterFactory)
-            .addCallAdapterFactory(rxJava2CallAdapterFactory)
             .build()
     }
 
@@ -56,11 +52,5 @@ class RetrofitClient private constructor(baseUrl: String = BASE_URL) {
             GsonBuilder().setDateFormat(ISO_8601_DATE_TIME_FORMAT).setLenient()
                 .create()
         )
-        private val rxJava2CallAdapterFactory =
-            RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io())
-        private val headerLog =
-            HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.HEADERS }
-        private val bodyLog =
-            HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
     }
 }

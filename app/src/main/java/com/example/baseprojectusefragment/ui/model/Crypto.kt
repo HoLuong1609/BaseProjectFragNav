@@ -1,4 +1,4 @@
-package com.example.baseprojectusefragment.data.response
+package com.example.baseprojectusefragment.ui.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName
 class Crypto {
     @SerializedName("base")
     @Expose
-    var base: String? = ""
+    var base: String = ""
 
     @SerializedName("counter")
     @Expose
-    var counter: String? = ""
+    var counter: String = ""
 
     @SerializedName("buy_price")
     @Expose
@@ -22,9 +22,9 @@ class Crypto {
 
     @SerializedName("icon")
     @Expose
-    var icon: String? = ""
+    var icon: String = ""
 
     @SerializedName("name")
     @Expose
-    var name: String? = ""
+    var name: String = ""
 }

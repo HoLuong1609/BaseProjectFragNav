@@ -1,25 +1,13 @@
 package com.example.baseprojectusefragment.ui.base
 
 import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.AndroidViewModel
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.PublishSubject
 
 abstract class BaseViewModel(application: Application): AndroidViewModel(application), Observable {
-    val context: Context = application.applicationContext
-    val subscriptions: CompositeDisposable by lazy { CompositeDisposable() }
-
-    private val errorMessage: PublishSubject<String> = PublishSubject.create()
-    fun getErrorMessage(): io.reactivex.Observable<String> = errorMessage
-
-    protected fun showDialogError(message: String) {
-        errorMessage.onNext(message)
-    }
 
     private val callbacks: PropertyChangeRegistry by lazy { PropertyChangeRegistry() }
 
@@ -29,11 +17,6 @@ abstract class BaseViewModel(application: Application): AndroidViewModel(applica
 
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback) {
         callbacks.remove(callback)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        subscriptions.clear()
     }
 
     fun handleError(e: Throwable) {
