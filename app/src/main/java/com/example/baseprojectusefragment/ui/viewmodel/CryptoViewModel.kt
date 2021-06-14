@@ -7,10 +7,7 @@ import com.example.baseprojectusefragment.data.response.CryptoResponse
 import com.example.baseprojectusefragment.ui.base.BaseViewModel
 import com.example.baseprojectusefragment.ui.base.SingleLiveEvent
 import com.example.baseprojectusefragment.ui.model.Crypto
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class CryptoViewModel(application: Application, private val repos: CryptoRepos) :
     BaseViewModel(application) {
@@ -29,6 +26,8 @@ class CryptoViewModel(application: Application, private val repos: CryptoRepos) 
             }
             onResponse(data)
             loading.value = false
+            delay(30000)
+            getCryptos()
         }
     }
 
@@ -40,6 +39,6 @@ class CryptoViewModel(application: Application, private val repos: CryptoRepos) 
 
     fun filter(keyword: String) {
         mKeyword = keyword
-        cryptos.value = list.filter { mKeyword.isEmpty() || it.name.contains(mKeyword) || it.base.contains(mKeyword) }
+        cryptos.value = list.filter { mKeyword.isEmpty() || it.name.contains(mKeyword, true) || it.base.contains(mKeyword, true) }
     }
 }

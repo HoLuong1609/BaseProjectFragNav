@@ -107,6 +107,8 @@ abstract class FragNavActivity<VM : BaseViewModel, VB : ViewDataBinding> : BaseA
         fragNavController.switchTab(tabIndex, null)
     }
 
+    fun getCurrentFragment() = fragNavController.currentFrag
+
     companion object {
         private val TAG = this::class.java.simpleName
     }

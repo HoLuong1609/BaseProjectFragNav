@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Base Project Use Fragment</string>
+    <string name="app_name">Crypto</string>
     <string name="home">Home</string>
     <string name="markets">Markets</string>
     <string name="trades">Trades</string>

@@ -99,7 +99,7 @@ class MainActivity : FragNavActivity<MainViewModel, ActivityMainBinding>(), Frag
 
     override fun onQueryTextChange(newText: String?): Boolean {
         newText?.let {
-            val fragment = getRootFragment(getTabIndex(navBottom.selectedItemId))
+            val fragment = getCurrentFragment()
             if (fragment is MarketsFragment && fragment.isAdded) {
                 fragment.search(it)
             }
