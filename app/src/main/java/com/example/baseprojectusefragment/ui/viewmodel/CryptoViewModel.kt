@@ -13,21 +13,35 @@ class CryptoViewModel(application: Application, private val repos: CryptoRepos) 
     BaseViewModel(application) {
 
     var loading = SingleLiveEvent<Boolean>()
-    val list = mutableListOf<Crypto>()
-    val cryptos = SingleLiveEvent<List<Crypto>>().apply { value = list }
+    private val list = mutableListOf<Crypto>()
+    val cryptoList = SingleLiveEvent<List<Crypto>>().apply { value = list }
     private var mKeyword: String = ""
+    private var mJob: Job? = null
 
-    fun getCryptos() {
+    fun filter(keyword: String) {
+        mKeyword = keyword
+        cryptoList.value = list.filter {
+            mKeyword.isEmpty() || it.name.contains(mKeyword, true) || it.base.contains(mKeyword, true)
+        }
+    }
+
+    fun startGetCryptoListJob() {
+        mJob = repeatRequest(DELAY_TIME, ::getCryptoList)
+    }
+
+    fun cancelJob() {
+        mJob?.cancel()
+    }
+
+    private fun getCryptoList() {
         CoroutineScope(Dispatchers.Main).launch {
             loading.value = true
             val request = CryptoRequest()
-            val data = withContext(Dispatchers.IO) {
-                repos.getCryptos(request)
+            val data = withTimeoutOrNull(TIMEOUT) {
+                repos.getCryptoList(request)
             }
-            onResponse(data)
+            data?.let { onResponse(it) }
             loading.value = false
-            delay(30000)
-            getCryptos()
         }
     }
 
@@ -37,8 +51,17 @@ class CryptoViewModel(application: Application, private val repos: CryptoRepos) 
         filter(mKeyword)
     }
 
-    fun filter(keyword: String) {
-        mKeyword = keyword
-        cryptos.value = list.filter { mKeyword.isEmpty() || it.name.contains(mKeyword, true) || it.base.contains(mKeyword, true) }
+    private fun repeatRequest(timeInterval: Long, job: () -> Unit): Job {
+        return CoroutineScope(Dispatchers.IO).launch {
+            while (isActive) {
+                job.invoke()
+                delay(timeInterval)
+            }
+        }
+    }
+
+    companion object {
+        const val DELAY_TIME = 30000L
+        const val TIMEOUT = 20000L
     }
 }

@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:scrollbarStyle="outsideOverlay"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:listData="@{viewmodel.cryptos}"
+            app:listData="@{viewmodel.cryptoList}"
             tools:listitem="@layout/item_crypto" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

@@ -3,7 +3,6 @@ package com.example.baseprojectusefragment.ui.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.baseprojectusefragment.R
 import com.example.baseprojectusefragment.databinding.FragmentCryptosBinding
 import com.example.baseprojectusefragment.extensions.initViewModel
@@ -12,8 +11,7 @@ import com.example.baseprojectusefragment.ui.base.BaseFragment
 import com.example.baseprojectusefragment.ui.viewmodel.CryptoViewModel
 import kotlinx.android.synthetic.main.fragment_cryptos.*
 
-class CrytosFragment : BaseFragment<CryptoViewModel, FragmentCryptosBinding>(),
-    SwipeRefreshLayout.OnRefreshListener {
+class CrytosFragment : BaseFragment<CryptoViewModel, FragmentCryptosBinding>() {
 
     override fun layoutId() = R.layout.fragment_cryptos
 
@@ -29,18 +27,21 @@ class CrytosFragment : BaseFragment<CryptoViewModel, FragmentCryptosBinding>(),
             setHasFixedSize(true)
             adapter = CryptoAdapter(this@CrytosFragment)
         }
-        swipeRefreshLayout.setOnRefreshListener(this)
+    }
 
+    override fun onResume() {
+        super.onResume()
         viewModel.run {
-            onRefresh()
+            startGetCryptoListJob()
             loading.observe(this@CrytosFragment, {
                 swipeRefreshLayout.isRefreshing = it
             })
         }
     }
 
-    override fun onRefresh() {
-        viewModel.getCryptos()
+    override fun onPause() {
+        super.onPause()
+        viewModel.cancelJob()
     }
 
     fun search(keyword: String) {

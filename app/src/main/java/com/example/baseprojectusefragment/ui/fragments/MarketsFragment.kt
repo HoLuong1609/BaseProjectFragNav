@@ -34,7 +34,7 @@ class MarketsFragment : BaseFragment<MarketsViewModel, FragmentMarketsBinding>()
 
     companion object {
 
-        fun newInstance(instance: Int = 0) = MarketsFragment().apply {
+        fun newInstance() = MarketsFragment().apply {
 
         }
     }

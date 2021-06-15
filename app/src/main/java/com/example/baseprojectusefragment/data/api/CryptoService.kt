@@ -6,5 +6,5 @@ import retrofit2.http.*
 interface CryptoService {
 
     @GET("price/all_prices_for_mobile")
-    suspend fun getCryptos(@Query("counter_currency") currency: String): CryptoResponse
+    suspend fun getCryptoList(@Query("counter_currency") currency: String): CryptoResponse
 }

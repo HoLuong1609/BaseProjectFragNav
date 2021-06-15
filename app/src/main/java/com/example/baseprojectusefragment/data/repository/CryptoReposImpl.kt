@@ -6,8 +6,8 @@ import com.example.baseprojectusefragment.data.request.CryptoRequest
 class CryptoReposImpl private constructor(private val service: CryptoService) :
     CryptoRepos {
 
-    override suspend fun getCryptos(request: CryptoRequest) =
-        service.getCryptos(request.counterCurrency)
+    override suspend fun getCryptoList(request: CryptoRequest) =
+        service.getCryptoList(request.counterCurrency)
 
     companion object {
         private var INSTANCE: CryptoReposImpl? = null
