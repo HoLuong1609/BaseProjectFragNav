@@ -19,9 +19,9 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         super.onViewCreated(view, savedInstanceState)
         val instance = arguments?.getInt(ARGS_INSTANCE) ?: 0 + 1
         button.setOnClickListener {
-            fragmentNavigation.pushFragment(
-                newInstance(instance + 1)
-            )
+//            fragmentNavigation.pushFragment(
+//                newInstance(instance + 1)
+//            )
         }
         editText.setText(instance.toString())
     }

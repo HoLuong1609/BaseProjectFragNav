@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -18,21 +19,42 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Push New Fragment"/>
+            android:text="@string/favorites"/>
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_15sdp"
             android:inputType="text"
-            android:transitionName="1"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:text="Example to show restored state"
+            app:font="@{viewModel.isEnabled ?`uvn` : `montserrat`}"
             tools:ignore="LabelFor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:text="Example to show restored state"
+            app:font="@{viewModel.isEnabled ?`uvn` : `montserrat`}"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/uvn"
+            android:textSize="20sp"
+            android:text="Example to show restored state"/>
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/uvn"
             android:text="Example to show restored state"
-            android:transitionName="2" />
+            android:textSize="20sp" />
     </LinearLayout>
 </layout>

@@ -21,3 +21,7 @@ fun Context.showKeyboard(target: EditText) {
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.showSoftInput(target, InputMethodManager.SHOW_IMPLICIT)
 }
+
+fun Context.retrievingResources(resourceName: String, resourceType: String): Int {
+    return resources.getIdentifier(resourceName, resourceType, packageName);
+}

@@ -1,5 +1,6 @@
 package com.example.baseprojectusefragment.ui.activities
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.baseprojectusefragment.R
@@ -86,6 +87,10 @@ class MainActivity : FragNavActivity<MainViewModel, ActivityMainBinding>(), Frag
             INDEX_FOOD -> return HomeFragment.newInstance()
         }
         throw IllegalStateException("Need to send an index that we know")
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(MyContextWrapper.wrap(newBase!!, "vi"))
     }
 }
 
