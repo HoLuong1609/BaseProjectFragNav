@@ -2,6 +2,7 @@ package com.example.baseprojectusefragment.extensions
 
 import android.app.Activity
 import android.content.Context
+import android.util.DisplayMetrics
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.example.baseprojectusefragment.BaseApplication
@@ -25,3 +26,6 @@ fun Context.showKeyboard(target: EditText) {
 fun Context.retrievingResources(resourceName: String, resourceType: String): Int {
     return resources.getIdentifier(resourceName, resourceType, packageName);
 }
+
+fun Context.dpToDx(dp: Float) = dp * (resources
+    .displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)

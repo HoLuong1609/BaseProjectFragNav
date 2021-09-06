@@ -17,14 +17,22 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val instance = arguments?.getInt(ARGS_INSTANCE) ?: 0 + 1
+        bindingView.viewModel = viewModel
         button.setOnClickListener {
 //            fragmentNavigation.pushFragment(
 //                newInstance(instance + 1)
 //            )
+            if (change) {
+                tvNote.text = "fragmentNavigation.pushFragment fragmentNavigation.pushFragment fragmentNavigation.pushFragment fragmentNavigation.pushFragment fragmentNavigation.pushFragment fragmentNavigation.pushFragment"
+            } else {
+                tvNote.text = "short text"
+            }
+            change = !change
         }
-        editText.setText(instance.toString())
+//        editText.setText(instance.toString())
     }
+    
+    var change = false
 
     companion object {
 

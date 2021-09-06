@@ -26,7 +26,7 @@ class MainActivity : FragNavActivity<MainViewModel, ActivityMainBinding>(), Frag
     override fun layoutId() = R.layout.activity_main
 
     override val defaultTabIndex: Int
-        get() = INDEX_FRIENDS
+        get() = INDEX_RECENTS
 
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
