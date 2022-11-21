@@ -1,26 +1,25 @@
 package com.example.baseprojectusefragment.ui.base
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import com.example.baseprojectusefragment.R
-import com.example.baseprojectusefragment.ui.fragments.*
-import com.example.baseprojectusefragment.common.*
 import com.example.baseprojectusefragment.extensions.hideSoftKeyboard
 import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavLogger
 import com.ncapdevi.fragnav.FragNavSwitchController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
 import com.ncapdevi.fragnav.tabhistory.UniqueTabHistoryStrategy
-import kotlinx.android.synthetic.main.activity_main.*
 
-abstract class FragNavActivity<VM : BaseViewModel, VB : ViewDataBinding> : BaseActivity<VM, VB>(), FragNavController.TransactionListener,
+abstract class FragNavActivity<VM : BaseViewModel, VB : ViewDataBinding> : BaseActivity<VM, VB>(),
+    FragNavController.TransactionListener,
     FragNavController.RootFragmentListener, FragmentNavigation, FragNavSwitchController {
 
-    private val fragNavController: FragNavController = FragNavController(supportFragmentManager,
+    private val fragNavController: FragNavController = FragNavController(
+        supportFragmentManager,
         R.id.container
     )
 
@@ -79,7 +78,10 @@ abstract class FragNavActivity<VM : BaseViewModel, VB : ViewDataBinding> : BaseA
 
     }
 
-    override fun onFragmentTransaction(fragment: Fragment?, transactionType: FragNavController.TransactionType) {
+    override fun onFragmentTransaction(
+        fragment: Fragment?,
+        transactionType: FragNavController.TransactionType
+    ) {
         //do fragmentty stuff. Maybe change title, I'm not going to tell you how to live your life
         // If we have a backstack, show the back button
         supportActionBar?.setDisplayHomeAsUpEnabled(fragNavController.isRootFragment.not())

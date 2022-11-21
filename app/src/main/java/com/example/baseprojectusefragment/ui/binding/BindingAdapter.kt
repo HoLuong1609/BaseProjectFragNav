@@ -1,6 +1,5 @@
 package com.example.baseprojectusefragment.ui.binding
 
-import android.R
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.baseprojectusefragment.extensions.retrievingResources
 import com.example.baseprojectusefragment.ui.widget.TextMeasurementUtils
 import com.example.baseprojectusefragment.ui.widget.TextMeasurementUtils.TextMeasurementParams
-
 
 @Suppress("UNCHECKED_CAST")
 @BindingAdapter(value = ["listData"])
@@ -57,15 +55,6 @@ fun setFont(textView: TextView, fontName: String) {
 
 @BindingAdapter("app:onGlobalLayoutListener")
 fun onGlobalLayoutListener(textView: TextView, listener: (lineCount: Int) -> Unit) {
-//    textView.viewTreeObserver
-//        .addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
-//            override fun onPreDraw(): Boolean {
-//                Log.e("LuongHH", textView.lineCount.toString() + " - " + textView.text)
-//                listener(textView.lineCount)
-//                textView.viewTreeObserver.removeOnPreDrawListener(this)
-//                return true
-//            }
-//        })
     textView.viewTreeObserver.addOnGlobalLayoutListener(object :
         OnGlobalLayoutListener {
         override fun onGlobalLayout() {
@@ -77,8 +66,4 @@ fun onGlobalLayoutListener(textView: TextView, listener: (lineCount: Int) -> Uni
             }
         }
     })
-//    textView.postDelayed({
-//        Log.e("LuongHH", textView.lineCount.toString() + " - " + textView.text)
-//    }, 1000)
-
 }

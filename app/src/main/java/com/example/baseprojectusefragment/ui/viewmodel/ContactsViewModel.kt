@@ -15,7 +15,7 @@ class ContactsViewModel(application: Application): BaseViewModel(application) {
     val loading = SingleLiveEvent<Boolean>()
 
     fun fetchContacts() {
-        DataHelper.getContactList(context)
+        DataHelper.getContactList(getApplication<Application>().applicationContext)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { loading.value = true }

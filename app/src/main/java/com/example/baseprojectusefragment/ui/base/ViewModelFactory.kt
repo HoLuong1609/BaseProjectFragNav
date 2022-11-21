@@ -12,12 +12,11 @@ import com.example.baseprojectusefragment.ui.viewmodel.MainViewModel
 class ViewModelFactory(context: Context) : ViewModelProvider.NewInstanceFactory() {
     private val application = when (context) {
         is Activity -> context.application
-        is Fragment -> context.requireActivity().application
         else -> throw IllegalStateException("unknown apllication: $context")
     }
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
         with(modelClass) {
             when {
                 isAssignableFrom(MainViewModel::class.java) -> {

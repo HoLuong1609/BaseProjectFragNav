@@ -15,8 +15,7 @@ class MyContextWrapper(base: Context) : ContextWrapper(base) {
         fun wrap(ctx: Context, language: String): ContextWrapper {
             var context = ctx
             val config = context.resources.configuration
-            val sysLocale: Locale?
-            sysLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            val sysLocale: Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 getSystemLocale(config)
             } else {
                 getSystemLocaleLegacy(config)

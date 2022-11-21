@@ -27,9 +27,9 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
         setupRecyclerView()
         swipeRefreshLayout.setOnRefreshListener(this)
         viewModel.apply {
-            loading.observe(viewLifecycleOwner, {
+            loading.observe(viewLifecycleOwner) {
                 swipeRefreshLayout.isRefreshing = it
-            })
+            }
             fetchContacts()
         }
     }

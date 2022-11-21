@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
+    private var instance = 0
+
     override fun layoutId() = R.layout.fragment_home
 
     override fun onCreateViewModel() = initViewModel<HomeViewModel>()
@@ -18,21 +20,14 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindingView.viewModel = viewModel
+        instance = arguments?.getInt(ARGS_INSTANCE) ?: 0
+        editText.text = instance.toString()
         button.setOnClickListener {
-//            fragmentNavigation.pushFragment(
-//                newInstance(instance + 1)
-//            )
-            if (change) {
-                tvNote.text = "fragmentNavigation.pushFragment fragmentNavigation.pushFragment fragmentNavigation.pushFragment fragmentNavigation.pushFragment fragmentNavigation.pushFragment fragmentNavigation.pushFragment"
-            } else {
-                tvNote.text = "short text"
-            }
-            change = !change
+            fragmentNavigation.pushFragment(
+                newInstance(instance + 1)
+            )
         }
-//        editText.setText(instance.toString())
     }
-    
-    var change = false
 
     companion object {
 
